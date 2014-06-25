@@ -29,7 +29,7 @@ int main()
 		memset(str,0,sizeof(str));
 		//sprintf(str,"%s","ls -l");
 		if(fgets(str,sizeof(str),stdin)&&str[0]!='\n')
-		//if(str[0]!='\n')
+			//if(str[0]!='\n')
 		{
 			while(str[j]!='\n')
 			{
@@ -43,13 +43,13 @@ int main()
 			}
 
 			arglist=(char**)malloc((k+1)*sizeof(char*));
-			j=0;
+			i=j=0;
 			sign=0;
 
 			while(str[j]!='\n')
 			{
 				if(sign==0&&str[j]!=' ')
-					*(arglist+i++)=&str[j];
+					*(arglist+i++)=str+j;
 				if(str[j]==' ')
 				{
 					str[j]='\0';
@@ -62,19 +62,28 @@ int main()
 			str[j]='\0';
 			*(arglist+i)=NULL;
 
+			i=0;
+			while(i!=k)
+			{
+				printf("argv[%d]:%s\n",i,arglist[i]);
+			  i++;
+			}
+  
 			memset(path,0,256);
 			sprintf(path,"%s","/bin/");
 			strcat(path,arglist[0]);
 			iret=fork();
 			if(iret==0)
 			{
-				execvp(path,arglist+1);
-			//	exit(-1);
+				if(execvp(path,arglist)==-1)
+					continue;
+				//	exit(-1);
+
 			}
 			else
 			{
 				wait(NULL);
-			//	exit(-1);
+				//	exit(-1);
 			}
 		}
 	}
