@@ -1,0 +1,19 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+MSG	chat.h	/^}MSG;$/;"	t	typeref:struct:tag
+MSG_GRP	chat.h	12;"	d
+MSG_OFF	chat.h	14;"	d
+MSG_ON	chat.h	13;"	d
+MSG_USR	chat.h	11;"	d
+SA	chat.h	/^typedef struct sockaddr_in  SA;$/;"	t	typeref:struct:sockaddr_in
+_CHAT_H_	chat.h	2;"	d
+main	chat_server.c	/^int main()$/;"	f
+s_addr	chat.h	/^SA s_addr;$/;"	m	struct:tag
+s_len	chat.h	/^int s_len;$/;"	m	struct:tag
+s_msg	chat.h	/^char  s_msg;$/;"	m	struct:tag
+s_type	chat.h	/^int s_type;$/;"	m	struct:tag
+tag	chat.h	/^typedef struct tag$/;"	s
