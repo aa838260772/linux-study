@@ -1,0 +1,5 @@
+EXE :=./bin/server_multithread
+SRC :=./src/server_multithread.c  ./src/msg.c
+INC :=./include/
+$(EXE):$(SRC) $(INC)
+	gcc -o $@ $(SRC) -I$(INC) -lpthread

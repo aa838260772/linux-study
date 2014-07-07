@@ -1,0 +1,5 @@
+ ./bin/client: ./src/client.c 
+	gcc -o $@ ./src/client.c -I./include/
+./bin/server: ./src/server.c 
+	gcc -o $@ ./src/server.c -I./include/
+

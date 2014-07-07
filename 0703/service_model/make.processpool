@@ -1,0 +1,5 @@
+EXE :=./bin/server_processpool
+SRC :=./src/server_processpool.c  ./src/msg.c ./src/my_child.c
+INC :=./include/ 
+$(EXE):$(SRC) $(INC)
+	gcc -o $@ $(SRC) -I$(INC) 
