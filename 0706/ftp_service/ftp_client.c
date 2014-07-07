@@ -37,6 +37,7 @@ int main(int argc,char **argv)
 
 	MSG send_msg,recv_msg;
 	int read_n;
+	printf("[syswj@~]:");
 	while(bzero(&send_msg,MSG_LEN+4) ,fgets(send_msg.s_msg,MSG_LEN,stdin)!=0)
 	{
 		char buf1[32]="";
@@ -65,7 +66,7 @@ int main(int argc,char **argv)
 			recv(fd_client , recv_msg.s_msg ,recv_msg.s_len,0);
 			if(strcmp(recv_msg.s_msg ,"over")== 0 )
 				break;
-			if(strcmp(buf2,"gets") == 0)
+			if(strcmp(buf1,"gets") == 0)
 			{
 				int fd_w =open(buf2 ,O_WRONLY|O_CREAT ,0666);
 				write(fd_w ,&recv_msg.s_msg ,recv_msg.s_len+4);
@@ -75,6 +76,7 @@ int main(int argc,char **argv)
 			}
 			fflush(stdout);
 		}
+	printf("[syswj@~]:");
 	}
 	strcpy(send_msg.s_msg , "bye");
 	send_msg.s_len = strlen(send_msg.s_msg);
