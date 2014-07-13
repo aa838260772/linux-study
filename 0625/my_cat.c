@@ -12,7 +12,7 @@ int main(int argc,char **argv)
 {
 char buf[256];
 memset(buf,0,256);
-sprintf(buf,"%s","cat");
+//sprintf(buf,"%s","cat");
 int i;
 for(i=1;i<argc;++i)
 {

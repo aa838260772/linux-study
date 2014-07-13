@@ -25,11 +25,11 @@ int main(int argc ,char **argv)
 	PCHLD childs =(PCHLD)calloc(cnt,sizeof(CHLD));
 	int fd_max = make_child(childs,cnt);
 	int index;
-    fd_set fd_read ,fd_ready;
-    FD_ZERO(&fd_read);
+	fd_set fd_read ,fd_ready;
+	FD_ZERO(&fd_read);
 	for(index =0 ;index <cnt ; index ++)
 	{
-    FD_SET(childs[index].s_fd_wr ,&fd_read);
+		FD_SET(childs[index].s_fd_wr ,&fd_read);
 	}
 
 	while(fd_client = accept(fd_server ,(struct sockaddr*)&client_addr ,&addr_len) )
@@ -41,8 +41,8 @@ int main(int argc ,char **argv)
 				continue;
 			}
 		}
-			printf("%s %d online\n",inet_ntoa(client_addr.sin_addr),ntohs(client_addr.sin_port));
-		for( index = 0; index <cnt ; ++index)
+		printf("%s %d online\n",inet_ntoa(client_addr.sin_addr),ntohs(client_addr.sin_port));
+		for( index = 0; index <cnt ; ++index)//查找是否有空闲进程，并分配
 		{
 			if(childs[index].s_status == S_IDLE)
 				break;
@@ -50,19 +50,19 @@ int main(int argc ,char **argv)
 		if(index != cnt)
 		{
 			childs[index].s_status = S_BUSY;
-		 send_fd(childs[index].s_fd_wr ,fd_client);
+			send_fd(childs[index].s_fd_wr ,fd_client);//向子进程发送客户端socket
 		}
-       
-	    fd_ready =fd_read;	  
+
+		fd_ready =fd_read;	  //轮询子进程是否发来结束信号
 		select(fd_max+1 ,&fd_ready,NULL,NULL,NULL);
 		for(index =0 ;index <cnt ;index ++)
 		{
 			char ch;
 			if(FD_ISSET(childs[index].s_fd_wr,&fd_ready))
-		{
-			printf("a process idle\n");
-         read(childs[index].s_fd_wr,&ch,1);
-		 childs[index].s_status = S_IDLE;
+			{
+				printf("a process idle\n");
+				read(childs[index].s_fd_wr,&ch,1);
+				childs[index].s_status = S_IDLE;
 			}
 		}
 	}

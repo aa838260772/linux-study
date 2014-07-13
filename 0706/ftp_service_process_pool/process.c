@@ -15,7 +15,7 @@ static void download(int,char*);
 static void upload(int,char*);
 static void rm(int ,char*);
 static void child_main(int);
-int  make_child(PCHLD arr , int cnt)
+int  make_child(PCHLD arr , int cnt)//创建进程池，并记录子进程列表中去
 {
 	printf("make_child\n");
 	pid_t pid;
@@ -44,7 +44,7 @@ int  make_child(PCHLD arr , int cnt)
 	return fd_max;
 }
 
-void child_main(int fds)
+void child_main(int fds)//子进程处理函数
 {
 	printf("child_main\n");
 	int fd_client;
@@ -52,7 +52,7 @@ void child_main(int fds)
 	{
 		recv_fd(fds,&fd_client);
 		printf("a process busy\n");
-		handle_request(fd_client);
+		handle_request(fd_client);//recv_fd收到父进程传来的fd_clien后处理
 		printf("%d\n",fd_client);
 		write(fds ,"1",1);
 	}
@@ -109,7 +109,7 @@ void recv_fd(int sockfd ,int *fd_to_recv)//接收文件描述符
 	*fd_to_recv = *(int*)CMSG_DATA(pcmsg);
 }
 
-int listen_socket(char *argv1,char* argv2)
+int listen_socket(char *argv1,char* argv2)//分配端口，地址，然后监听
 {
 	int fd_server;
 
@@ -141,7 +141,7 @@ int listen_socket(char *argv1,char* argv2)
 	return fd_server;
 }
 
-void handle_request(int fd_client)
+void handle_request(int fd_client)//子进程处理函数，收到命令对字符串简单处理后交给命令处理函数
 {
 	printf("handle_request!\n");
 	int read_n;
@@ -163,7 +163,7 @@ void handle_request(int fd_client)
 		recv_msg.s_msg[i] = '\0';
 		fflush(stdout);
 		command_process(fd_client ,recv_msg);//命令处理函数
-	}
+	}//客户端结束前会发送bye过来，接收到后退出while,打印客户端下线信息
 	printf("off\n");
 	close(fd_client);
 }
@@ -182,7 +182,7 @@ void my_cd(int fd_client,char *path)
 	}
 }
 
-void command_process(int fd_client ,MSG recv_msg)
+void command_process(int fd_client ,MSG recv_msg)//对字符串处理判断，调用相应处理函数
 {
 	char buf1[20]="";
 	char buf2[20]="";

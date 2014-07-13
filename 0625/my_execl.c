@@ -20,10 +20,10 @@ int i;
 arglist=(char**)malloc((argc+1)*sizeof(char*));
 for(i=0;i<argc;++i)
 {
-arglist[i]=argv[i];
+arglist[i]=argv[i+1];
 }
 argv[i]=NULL;
-execvp(arglist[0],arglist+1);
+execvp(arglist[0],arglist);
 printf("end\n");
 
 return 0;

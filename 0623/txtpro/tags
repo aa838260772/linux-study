@@ -1,0 +1,25 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+MAX_LEN	pro.h	18;"	d
+MAX_LINE_LEN	pro.h	17;"	d
+_PRO_H_	pro.h	9;"	d
+a	main.c	/^word *a[1000000];$/;"	v
+count	pro.h	/^int count;$/;"	m	struct:word
+get_next	pro.c	/^void get_next(char *str)$/;"	f
+index_kmp	pro.c	/^int index_kmp(char *str,char *sub)$/;"	f
+line_pro	pro.c	/^void line_pro(char *line[],FILE *fp)$/;"	f
+main	main.c	/^int main(int argc,char **argv)$/;"	f
+name	pro.h	/^char name[20];$/;"	m	struct:word
+next	pro.c	/^int next[30];$/;"	v
+partion	pro.c	/^int partion(word *a[],int len)$/;"	f
+pro_space	pro.c	/^void pro_space(char *str)$/;"	f
+quick_sort	pro.c	/^void quick_sort(word *a[],int len)$/;"	f
+rd_in	pro.c	/^void rd_in(word *a[],FILE *fp,int *word_dif,int *word_count)$/;"	f
+search_sub	pro.c	/^void search_sub(char *line[],char *sub,int line_num)$/;"	f
+text_process	pro.c	/^void text_process(int a,int b,int *line_num,int *total_char)$/;"	f
+word	pro.h	/^typedef struct word{$/;"	s
+word	pro.h	/^}word;$/;"	t	typeref:struct:word

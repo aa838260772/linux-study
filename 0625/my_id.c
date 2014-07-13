@@ -8,8 +8,6 @@
 #include<stdio.h>
 int main()
 {
-
-
 printf("uid:%d gid:%d pid:%u ppid:%u euid:%d egid:%d\n",getuid(),getgid(),
 		getpid(),getppid(),geteuid(),getegid());
 while(1);

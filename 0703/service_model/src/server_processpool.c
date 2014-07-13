@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <my_child.h>
-#include <msg.h>
+#include "msg.h""
 int main(int argc,char *argv[])
 {
 	signal(13,SIG_IGN);

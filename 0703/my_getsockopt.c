@@ -14,12 +14,15 @@ int main()
 {
 int sock_fd;
 int recv_size=0,snd_size=0;
+int reuse = -1;
 int len_recv=sizeof(int);
 int len_snd=sizeof(int);
+int len_reuse=sizeof(int);
 sock_fd=socket(AF_INET,SOCK_STREAM,0);
 getsockopt(sock_fd,SOL_SOCKET,SO_RCVBUF,&recv_size,&len_recv);
 getsockopt(sock_fd,SOL_SOCKET,SO_SNDBUF,&snd_size,&len_snd);
-printf("len_recv:%d\nlen_snd:%d\n",recv_size,snd_size);
+getsockopt(sock_fd,SOL_SOCKET,SO_REUSEADDR,&reuse,&len_reuse);
+printf("len_recv:%d\nlen_snd:%d reuse:%d\n",recv_size,snd_size ,reuse);
 
 return 0;
 }
