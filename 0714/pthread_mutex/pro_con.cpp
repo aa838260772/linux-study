@@ -13,7 +13,6 @@ queue Q;
 
 void *producer(void *arg)
 {
-//    pthread_detach(pthread_self());
     int s;
     while(1)
     {
@@ -22,22 +21,21 @@ void *producer(void *arg)
             pthread_cond_wait(&empty ,&mutex );
         s = rand()%100;
         Q.push(s);
-        cout << "produce a bunber:" << s << endl;
+        cout << "produce a nunber:" << s <<  "  "  << pthread_self()<< endl;
+       
         pthread_cond_signal(&full);
         pthread_mutex_unlock(&mutex);
-        sleep(2);
     }
 }
 
 void *consumer(void *arg)
 {
-  //  pthread_detach(pthread_self());
     while(1)
     {
         pthread_mutex_lock(&mutex);
         while(Q.isempty())//这里用if的时候出现了问题，
             pthread_cond_wait(&full ,&mutex);
-        cout << "consum  a bunber:" << Q.top() << endl;
+        cout << "consum  a nunber:" << Q.top() <<  "  "  << pthread_self() << endl;
         Q.pop();
         pthread_cond_signal(&empty);
         pthread_mutex_unlock(&mutex);
@@ -64,6 +62,7 @@ int main(int argc, const char *argv[])
    while(i)//消费者线程
    {
    pthread_create(&tid ,NULL ,consumer ,NULL);
+    pthread_detach(tid);
    i--;
    }
    
