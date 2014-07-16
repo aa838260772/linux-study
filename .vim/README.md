@@ -59,7 +59,7 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 ##使用方式
 
 ```shell
-git clone https://github.com/guochy2012/vim.git ~/.vim
+git clone https://github.com/aa838260772/linux-study.git ~/.vim
 
 cp ~/.vim/vimrc ~/.vimrc
 ```
