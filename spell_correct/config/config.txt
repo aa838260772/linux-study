@@ -1,5 +1,5 @@
 port = 8888;
 val = 3 interval = 10;
-libfileen = ../data/liben.txt 
-libfilecn = ../data/libcn.txt
+ibfileen = ../data/liben.txt ;
+libfilecn = ../data/libcn.txt;
 cachefile = ../data/cache.txt;
